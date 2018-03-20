@@ -1,7 +1,33 @@
-<form (ngSubmit)="onSubmit(form)" #form="ngForm" >
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" >
+      <label>Email</label>
+      <input type="text" name="email" class="form-control" [(ngModel)]="user.email">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
+      <hr>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)" *ngIf="user.email !== 'undefined'">Login</button>
+
+<!-- <hr> -->
+
+<!-- <pre>{{closeResult}}</pre> -->
+
+
+<!-- <form (ngSubmit)="onSubmit(form)" #form="ngForm" >
   <label>Email</label>
   <input type="text" name="email" class="form-control" [(ngModel)]="user.email">
   <label>Password</label>
   <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
   <button type="submit" class="btn btn-primary">Login</button>
-</form>
+</form> -->
